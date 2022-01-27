@@ -60,18 +60,20 @@
               <!-- <a onclick='toggleInterest(this, "{{ event_id }}"))'class="btn-floating btn-small waves-effect waves-light scale-transition scale-in yellow"><iclass="material-icons">star</i></a> -->
             </td>
             <td class="blue-text clickable" onclick="location.href='/events/1.html'">Opening Ceremony</td>
-            <td> <a href='?filter=location:Auditorium'>Auditorium </a></td>
-            <td><a href='?filter=date:05-01-2022'>May 1 (Sat)</a> 10:30 AM</td>
-            <td>30m</td>
-            <td> <a href='?filter=type:Main'>Main</a></td>
-            <td>100<i class=material-icons>people</i></td>
+            {{#with event_data}}
+            <td> <a href='?filter=location:Auditorium'>{{event_data.event_location}} </a></td>
+            <td><a href='?filter=date:05-01-2022'>{{event_date}}</a> {{event_time}}</td>
+            <td>{{event_duration}}</td>
+            <td> <a href='?filter=type:Main'>{{event_type}}</a></td>
+            <td>{event_interest}<i class=material-icons>people</i></td>
+            {{#with event_data}}
             <!-- ADMIN ONLY BUTTONS -->
             <td nowrap>
 
               <a class="btn-floating btn-small waves-effect waves-light green lighten-1" href="/eventform.html"><i
                   class="material-icons">edit</i></a>
               <a class="btn-floating waves-effect waves-light red"
-                onclick='confirmDelete("Opening Ceremony","{{ event_id}}", ".")'><i
+                onclick='confirmDelete("Opening Ceremony","{{event_id}}", ".")'><i
                   class="material-icons">delete</i></a>
 
             </td>
