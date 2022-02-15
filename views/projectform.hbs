@@ -1,0 +1,114 @@
+<form id="create_update_project" method="post" action="/projects{{#if project}}/{{project.project_id}}{{/if}}">
+  <!-- action and method depend on C vs U-->
+  <input type="hidden" name="project_id" id="project_id" value="{{#if project}}{{project.project_id}}{{/if}}" />
+  <!-- server sets project_id value-->
+
+  <div class="container">
+    <div class="card grey lighten-4">
+      <div class="card-content">
+        <span class="card-title">
+          <h1>{{title}}</h1>
+        </span>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input
+              type="text"
+              name="project_name"
+              id="project_name"
+              class="validate"
+              data-length="32"
+              required
+            />
+            <label for="project_name">Project Name</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="text" name="project_team" id="project_team" required />
+            <label for="project_team">Team Members</label>
+          </div>
+        </div>
+
+        <!-- https://materializecss.com/select.html -->
+        <div class="row">
+          <div class="input-field col s6">
+            <select id="project_type" name="project_type_id" required>
+              <option value="" disabled selected>Select a type</option>
+              {{#each project_types}}
+                <option value="{{project_type_id}}">{{project_type}}</option>
+              {{/each}}
+            </select>
+            <label for="project_type">Project Type</label>
+          </div>
+
+          <div class="input-field col s6">
+            <select id="project_location" name="project_location_id" required>
+              <option value="" disabled selected>Select a location</option>
+              {{#each project_locations}}
+                <option
+                  value="{{project_location_id}}"
+                >{{project_location}}</option>
+              {{/each}}
+            </select>
+            <label for="project_location">Location</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s6">
+            <select id="project_session" name="project_session" required>
+              <option value="" disabled selected>Select a session</option>
+              <option value="1">Session 1</option>
+              <option value="2">Session 2</option>
+              <option value="3">Session 3</option>
+              <option value="4">Session 4</option>
+            </select>
+            <label for="project_session">Project Session</label>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s6">
+              <input type="text" name="project_language" id="project_language" required />
+              <label for="project_language">Language(s)</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <textarea
+              id="project_description"
+              name="project_description"
+              class="materialize-textarea"
+              data-length="500"
+            ></textarea>
+            <label for="project_description">Description</label>
+          </div>
+        </div>
+
+        <div class="button_wrapper">
+          <button class="submit waves-effect waves-light btn" type="submit">
+            {{#if project}}Update{{else}}Create{{/if}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<script>
+  {{#with project}}
+    document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById("project_name").value = "{{project_name}}";
+    document.getElementById("project_team").value = "{{project_team}}";
+    document.getElementById("project_type").value = "{{project_type_id}}";
+    document.getElementById("project_location").value = "{{project_location_id}}";
+    document.getElementById("project_session").value = "{{project_session}}";
+    document.getElementById("project_language").value = "{{project_language}}";
+    document.getElementById("project_description").value = "{{{project_description}}}";
+    var elems = document.querySelectorAll('select'); var instances =
+    M.FormSelect.init(elems, {}); });
+  {{/with}}
+</script>
