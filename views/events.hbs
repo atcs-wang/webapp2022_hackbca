@@ -65,10 +65,10 @@
               <a onclick='toggleInterest(this, "{{ event_id }}")'
               <!-- If user already "starred" this event, it should be a yellow star -->
               {{#unless event_user_interest}} 
-              <a onclick='toggleInterest(this, "{{ event_id }}"))'class="btn-floating btn-small waves-effect waves-light scale-transition scale-in blue">
+              <a onclick='toggleInterest(this, "{{ event_id }}")'class="btn-floating btn-small waves-effect waves-light scale-transition scale-in blue">
                 <i class="material-icons">star_border</i></a>
               {{else}}
-              <a onclick='toggleInterest(this, "{{ event_id }}"))'class="btn-floating btn-small waves-effect waves-light scale-transition scale-in yellow">
+              <a onclick='toggleInterest(this, "{{ event_id }}")'class="btn-floating btn-small waves-effect waves-light scale-transition scale-in yellow">
                 <i class="material-icons">star</i></a>
               {{/unless}}
             </td>
@@ -111,3 +111,15 @@
     {{/if}}
 
     <script src="/js/event_utils.js"></script>
+    {{!-- <script>
+      async function sendReq() {
+        try {
+          let data = await fetch("/testjson").then(response => response.json())
+          document.getElementById("tobefilled").textContent = data.message;
+        } catch(err) {
+
+        }
+      }
+    </script>
+    <p id="tobefilled">There's nothing important here.</p>
+    <button onclick="sendReq();">Send AJAX request</button> --}}
