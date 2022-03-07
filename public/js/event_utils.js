@@ -46,4 +46,9 @@ function toggleInterest(interestButton, event_id){
     }
     //Until server response comes, show a "processing" symbol - which means clicking does nothing until response comes.
     interestButtonIcon.textContent = "star_half";
+    //A fetch request to register (not unregister)
+    fetch(`/events/${event_id}/register`, {
+        method: "GET",
+        credentials: "include"
+    })
 }
